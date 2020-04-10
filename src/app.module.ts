@@ -1,8 +1,7 @@
-
 import { Module } from '@nestjs/common';
-import { MathModule } from './math/math.module';
+import { HeroModule } from './hero/hero.module';
 
 @Module({
-  imports: [MathModule],
+  imports: [HeroModule],
 })
 export class AppModule {}

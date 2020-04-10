@@ -1,15 +1,15 @@
 import { NestFactory } from '@nestjs/core';
 import { Transport, MicroserviceOptions } from '@nestjs/microservices';
 import { AppModule } from './app.module';
+import { join } from 'path';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   app.connectMicroservice({
-    transport: Transport.TCP,
+    transport: Transport.GRPC,
     options: {
-      port: 3001,
-      retryAttempts: 5,
-      retryDelay: 3000,
+      package: 'hero',
+      protoPath: join(__dirname, 'hero/hero.proto'),
     },
   });
   await app.startAllMicroservicesAsync();
