@@ -1,7 +1,13 @@
 import { Module } from '@nestjs/common';
-import { HeroModule } from './hero/hero.module';
+import { MongooseModule } from '@nestjs/mongoose';
+import { AuthModule } from './auth/auth.module';
+import { UserModule } from './user/user.module';
 
 @Module({
-  imports: [HeroModule],
+  imports: [MongooseModule.forRoot('mongodb://localhost/nest_db', {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    createIndexes: true,
+  }), AuthModule, UserModule],
 })
 export class AppModule {}
