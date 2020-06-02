@@ -1,10 +1,37 @@
+import {
+  Entity,
+  ObjectID,
+  ObjectIdColumn,
+  Column,
+  CreateDateColumn,
+  UpdateDateColumn,
+} from 'typeorm';
+@Entity()
+export class User {
+  @ObjectIdColumn()
+  _id: ObjectID;
 
-import * as mongoose from 'mongoose';
+  @Column()
+  firstname: string;
 
-export const UserSchema = new mongoose.Schema({
-  firstname: { type: String, required: true, index: true },
-  lastname: { type: String, required: true, index: true },
-  username: { type: String, required: true, index: true },
-  email: { type: String, required: true, index: true },
-  password: { type: String, required: true },
-});
+  @Column()
+  lastname: string;
+
+  @Column()
+  username: string;
+
+  @Column()
+  email: string;
+
+  @Column()
+  password: string;
+
+  @Column({ default: 1 })
+  status: number;
+
+  @CreateDateColumn()
+  createdAt: Date;
+
+  @UpdateDateColumn()
+  updatedAt: Date;
+}

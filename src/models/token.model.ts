@@ -1,9 +1,28 @@
+import {
+  Entity,
+  ObjectID,
+  ObjectIdColumn,
+  Column,
+  CreateDateColumn,
+  UpdateDateColumn,
+} from 'typeorm';
+@Entity()
+export class Token {
+  @ObjectIdColumn()
+  _id: ObjectID;
 
-import * as mongoose from 'mongoose';
+  @Column()
+  token: string;
 
-export const TokenSchema = new mongoose.Schema({
-  token: { type: String, required: true },
-  type: { type: String, required: true, default: 'bearer'},
-  revoked: { type: Boolean, default: false },
-  user: { type: mongoose.Schema.Types.ObjectId, required: true },
-});
+  @Column()
+  type: string;
+
+  @Column({ default: false })
+  revoked: boolean;
+
+  @CreateDateColumn()
+  createdAt: Date;
+
+  @UpdateDateColumn()
+  updatedAt: Date;
+}
